@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0D0714;
+  color: white;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  background-color: #15101C;
+  padding: 30px;
+  border-radius: 15px;
+  width: 400px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  background: #252030;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+input#input-box {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button.add, button.check, button.delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-size: 24px;
+  color: #e8eaed;
+}
+
+button.check .material-symbols-outlined,
+button.delete .material-symbols-outlined {
+  font-size: 24px;
+}
+
+button.check .material-symbols-outlined {
+  color: #00C851;
+}
+
+button.delete .material-symbols-outlined {
+  color: #FF4444;
+}
+
+.task-count {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.task-list {
+  list-style-type: none;
+  margin-top: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+
+.task-list::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.task-list::-webkit-scrollbar-track {
+  background: #15101C;
+  border-radius: 10px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+.task-list::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+
+li.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #252030;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.task-item .task-name {
+  flex: 1;
+  color: white;
+}
+
+ul.done .task-name {
+  text-decoration: line-through;
+  color: #828282;
+}
+

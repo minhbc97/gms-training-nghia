@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <link rel="stylesheet" href="style2.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="main">
+      <div class="row">
+        <input type="text" id="input-box" placeholder="Add a new task" />
+        <button class="add">
+          <span class="material-symbols-outlined">add</span>
+        </button>
+      </div>
+
+      <div class="task-count">
+        <h3>Tasks to do - <span id="tasks-todo-count">0</span></h3>
+      </div>
+      <ul id="tasks-todo-list" class="task-list">
+      </ul>
+
+      <div class="task-count">
+        <h3>Done - <span id="tasks-done-count">0</span></h3>
+      </div>
+      <ul id="tasks-done-list" class="task-list done">
+      </ul>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
