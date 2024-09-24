@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 980px;
+}
+
+.left-panel {
+  width: 50%;
+  padding-right: 40px;
+  margin-top: 40px;
+}
+
+.left-panel h1 {
+  color: #0866ff;
+  font-size: 55px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.left-panel p {
+  font-size: 24px;
+  color: #000000;
+  line-height: 1.5;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.right-panel {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.right-panel form input[type="email"],
+.right-panel form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #dddfe2;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.login {
+  background-color: #1877f2;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.login:hover {
+  background-color: #165cdb;
+}
+
+.forgot {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.forgot a {
+  color: #1877f2;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.forgot a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  margin: 20px 0;
+  border: 0.5px solid #dddfe2;
+}
+
+.button a {
+  background-color: #42b72a;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 16px;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.button a:hover {
+  background-color: #36a420;
+}
+
+.create-page {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.create-page a {
+  color: #1877f2;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.create-page a:hover {
+  text-decoration: underline;
+}
