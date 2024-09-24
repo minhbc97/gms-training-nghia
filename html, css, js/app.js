@@ -7,89 +7,93 @@ const tasksDoneCount = document.getElementById('tasks-done-count');
 let todoCount = 0;
 let doneCount = 0;
 
+window.onload = () => loadTasks();
+
 // Load tasks from local storage
 function loadTasks() {
-  const storedTasks = JSON.parse(localStorage.getItem('tasks'));
-  if (storedTasks) {
-    storedTasks.forEach(task => {
-      addTask(task.name, task.completed);
-    });
-  }
+  const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  
+  storedTasks.forEach(task => {
+    addTask(task.name, task.completed);
+  });
 }
 
 // Save tasks to local storage
 function saveTasks() {
   const tasks = [];
+
   tasksTodoList.querySelectorAll('.task-item').forEach(taskItem => {
-    tasks.push({
-      name: taskItem.querySelector('.task-name').textContent,
-      completed: false
-    });
+    tasks.push({ name: taskItem.querySelector('.task-name').textContent, completed: false });
   });
+
   tasksDoneList.querySelectorAll('.task-item').forEach(taskItem => {
-    tasks.push({
-      name: taskItem.querySelector('.task-name').textContent,
-      completed: true
-    });
+    tasks.push({ name: taskItem.querySelector('.task-name').textContent, completed: true });
   });
-  
+
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// Add task event
+// Add a task on button click
 document.querySelector('.add').addEventListener('click', () => {
   const taskName = inputBox.value.trim();
-  if (taskName !== '') {
+  
+  if (taskName) {
     addTask(taskName);
     inputBox.value = '';
     saveTasks();
   }
 });
 
-// Add task on enter key press
+// Add a task to the appropriate list (to do or done)
 function addTask(taskName, completed = false) {
   const taskItem = document.createElement('li');
   taskItem.classList.add('task-item');
-
+  
   taskItem.innerHTML = `
     <span class="task-name ${completed ? 'completed' : ''}">${taskName}</span>
     ${!completed ? `
-    <button class="check">
-      <span class="material-symbols-outlined">check_circle</span>
-    </button>
-    ` : ''}
+      <button class="check">
+        <span class="material-symbols-outlined">check_circle</span>
+      </button>` : ''}
     <button class="delete">
       <span class="material-symbols-outlined">delete</span>
     </button>
   `;
 
-  if (completed) {
-    tasksDoneList.appendChild(taskItem);
-  } else {
-    tasksTodoList.appendChild(taskItem);
-  }
+  completed ? tasksDoneList.appendChild(taskItem) : tasksTodoList.appendChild(taskItem);
+
 
   updateTaskCounts();
 
-  // Add event listeners
+  // Add event listeners for the buttons
   if (!completed) {
     taskItem.querySelector('.check').addEventListener('click', () => {
-      taskItem.classList.add('completed');
-      tasksDoneList.appendChild(taskItem);
-      taskItem.querySelector('.check').remove();
-      saveTasks();
-      updateTaskCounts();
+      markAsDone(taskItem);
     });
   }
 
   taskItem.querySelector('.delete').addEventListener('click', () => {
-    taskItem.remove();
-    saveTasks();
-    updateTaskCounts();
+    deleteTask(taskItem);
   });
 }
 
-  // Update task counts
+// Mark a task as done
+function markAsDone(taskItem) {
+  taskItem.classList.add('completed');
+  taskItem.querySelector('.check').remove();
+  tasksDoneList.appendChild(taskItem);
+  saveTasks();    
+  updateTaskCounts();              
+}
+
+// Delete a task
+function deleteTask(taskItem) {
+  taskItem.remove();
+  saveTasks();
+  updateTaskCounts();
+}
+
+// Update the task counts
 function updateTaskCounts() {
   todoCount = tasksTodoList.children.length;
   doneCount = tasksDoneList.children.length;
@@ -97,5 +101,3 @@ function updateTaskCounts() {
   tasksTodoCount.textContent = todoCount;
   tasksDoneCount.textContent = doneCount;
 }
-
-window.onload = loadTasks;
