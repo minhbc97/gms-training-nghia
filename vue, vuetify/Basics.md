@@ -89,7 +89,6 @@
   - `watchEffect()`
     - `Allows us to track the callback's reactive dependencies automatically.`
   - `Side Effect Cleanup`
-    - 
   - `Callback Flush Timing`
   - `Stopping a Watcher`
 
