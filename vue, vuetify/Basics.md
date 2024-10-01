@@ -1,4 +1,6 @@
-# VueJs
+# VueJs Basics
+<h1>1.Essentials</h1>
+
 ## Creating an application
 ## Template syntax
 ![alt text](image.png)
@@ -107,3 +109,26 @@
   - `const postFontSize = ref(1), <div :style="{ fontSize: postFontSize + 'em' }">`
   - `<slot />`
   - `<component :is="tabs[currentTab]"></component>`
+
+<h1> Components In-Depth </h1>
+
+## Registration
+  - `Global Registration`
+  - `Local Registration`
+## Props
+  - `defineProps(['obj'])`
+  - `Passing different value types`
+## Events
+  - `Emit: @click="$emit('someEvent')"`
+  - `Listen: @some-event="callback"`
+## Components v-model
+  - `const model = defineModel()`
+## Fallthrough Attributes
+## Slots
+  - `<slot/>`
+## Provide/ Inject
+  - `const message = ref('hello')`
+  - `provide('message', message)`
+  - `const message = inject('message')`
+## Async Components
+  - `const AsyncComp = defineAsyncComponent(() => import('./components/MyComponent.vue'))`

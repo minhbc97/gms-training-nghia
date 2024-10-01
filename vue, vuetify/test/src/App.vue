@@ -1,57 +1,44 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed } from 'vue'
+import Login from './components/Login.vue'
+import Home from './components/Home.vue'
 
-// Ref for raw HTML
-const rawHtml = ref('<span style="color: red">This should be red.</span>')
-
-// Reactive state
-const count = ref(0)
-
-// Ref for dynamic ID
-const dynamicId = ref('my-dynamic-id')
-
-// Reactive state for button disabled
-const isButtonDisabled = ref(false)
-
-// Method to toggle button disabled state
-function toggleDisabledProperty() {
-  isButtonDisabled.value = !isButtonDisabled.value
+const routes = {
+  '/home': Home,
+  '/login': Login
 }
 
-// Function to increment count
-function increment() {
-  count.value++
+const currentPath = ref(window.location.hash || '#')
+
+const checkToken = () => {
+  const authToken = localStorage.getItem('authToken')
+  const tokenExpiry = localStorage.getItem('tokenExpiry')
+
+  if (authToken && tokenExpiry) {
+    const currentTime = new Date().getTime()
+    if (currentTime - parseInt(tokenExpiry) <= 1800000) {
+      currentPath.value = '#/home'
+    } else {
+      localStorage.removeItem('authToken')
+      localStorage.removeItem('tokenExpiry')
+      currentPath.value = '#/login'
+    }
+  } else {
+    currentPath.value = '#/login'
+  }
 }
 
-// Lifecycle hooks
-onMounted(() => {
-  console.log(`The initial count is ${count.value}.`)
+checkToken()
+
+window.addEventListener('hashchange', () => {
+  checkToken()
+})
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1)] || Login
 })
 </script>
 
 <template>
-  <button @click="increment">Count is: {{ count }}</button>
-
-  <!-- Div with dynamic id -->
-  <div :id="dynamicId"></div>
-
-  <div id="example2">
-    <p>Giá trị của isButtonDisabled: {{ isButtonDisabled }}</p>
-    <button :disabled="isButtonDisabled">Click Me</button>
-    <button @click="toggleDisabledProperty">Toggle Disabled</button>
-  </div>
-
-  <!-- Render raw HTML using v-html -->
-  <div v-html="rawHtml"></div>
-
+  <component :is="currentView" />
 </template>
-
-<style scoped>
-button {
-  font-weight: bold;
-}
-
-p {
-  font-size: 20px;
-}
-</style>
